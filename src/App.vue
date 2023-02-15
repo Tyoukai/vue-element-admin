@@ -1,22 +1,19 @@
 <template>
-  <div id="app">
-    <Top/>
-    <Menu/>
-    <Footer />
-  </div>
+  <el-container>
+    <el-header><Header/></el-header>
+    <el-main><Main/></el-main>
+  </el-container>
 </template>
 
 <script>
-import Top from './components/Top.vue';
-import Menu from './components/Menu.vue';
-import Footer from './components/Footer.vue';
+import Header from './components/Header.vue';
+import Main from './components/Main.vue';
 
 export default {
   name: 'App',
   components: {
-    Top,
-    Menu,
-    Footer
+    Header,
+    Main
   }
 }
 </script>

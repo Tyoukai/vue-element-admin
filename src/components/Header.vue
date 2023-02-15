@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2>这是Footer元素</h2>
+    这是header元素
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Footer'
+  name: 'Header',
 }
 </script>
 
