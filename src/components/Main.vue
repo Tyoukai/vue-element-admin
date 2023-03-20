@@ -1,19 +1,9 @@
 <template>
-  <el-container>
-    <el-header style="text-align: right; font-size: 16px">
-      <span>王小虎</span>
-    </el-header>
-    <el-main>
-      <el-table :data="tableData">
-        <el-table-column prop="date" label="日期" width="140">
-        </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="address" label="地址">
-        </el-table-column>
-      </el-table>
-    </el-main>
-  </el-container>
+  <div class="clo-md-10 col-md-offset-2 main">
+    <div style="width: 100%; height: 100%; background-color: rgb(95, 95, 101);">
+      主区域
+    </div>
+  </div>
 </template>
 
 <script>

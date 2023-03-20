@@ -1,32 +1,12 @@
 <template>
-  <el-aside>
-      <el-menu>
-        <el-menu-item index="1">
-          <i class="el-icon-menu"></i>
-          <span slot="title">kafka相关</span>
-        </el-menu-item>
-        <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
-        </el-menu-item>
-        <el-menu-item index="3">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航三</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航四</span>
-        </el-menu-item>
-        <el-menu-item index="5">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航五</span>
-        </el-menu-item>
-        <el-menu-item index="6">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航六</span>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
+  <div class="clo-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li class="active"><a href="#">首页</a></li>
+      <li><a href="#">kafka配置</a></li>
+      <li><a href="#">外挂机器人配置</a></li>
+      <li><a href="#">看门狗配置</a></li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -35,6 +15,22 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
 
+  .nav-sidebar {
+    width: 212px
+  }
 </style>
