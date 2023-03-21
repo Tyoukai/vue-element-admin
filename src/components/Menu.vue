@@ -29,7 +29,7 @@ export default {
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
   }
-
+  
   .nav-sidebar {
     width: 212px
   }
