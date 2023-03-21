@@ -23,9 +23,11 @@ export default {
 </script>
 
 <style>
-.el-header {
-  background-color: #B3C0D1;
-  color: #333;
-  line-height: 60px;
-}
+  @media (min-width: 768px) {
+    .main {
+      padding-right: 0px;
+      padding-left: 0px;
+      height: 559px;
+    }
+  }
 </style>
