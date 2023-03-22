@@ -6,6 +6,8 @@
       <!-- 引入 Bootstrap -->
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	  <link href="dashboard.css" rel="stylesheet">
+	  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </head>
    <body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -44,22 +46,36 @@
 
 				<!-- 主区域 -->
 				<div class="clo-md-10 col-md-offset-2 main">
-					<div style="width: 100%; height: 100%; margin-left: 10px">
+					<div class="row" style="width: 100%; height: 100%; margin-left: 10px">
 						<h1 style="border-bottom: 1px solid #eee; padding-bottom: 10px">蓝凌消息重试</h1>
 						<br>
-						<div class="row">
-							<div class="clo-md-4" style="width:30%; margin-left: 25px;">
-								<div class="input-group">
-									<span class="input-group-addon">流程id：</span>
-									<input type="text" class="form-control" placeholder="流程id">
-								</div>
+						<div class="clo-md-4" style="width:30%; margin-left:25px;" >
+							<div class="dropdown">
+								<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+								data-toggle="dropdown">
+									审批节点类型
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#">结束节点</a>
+									</li>
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#">审批节点</a>
+									</li>
+								</ul>
 							</div>
-							<div class="clo-md-4">
-								
+						</div>
+						<br>
+						<div class="clo-md-4" style="width:30%; margin-left: 25px;">
+							<div class="input-group">
+								<span class="input-group-addon">流程id：</span>
+								<input type="text" class="form-control" placeholder="流程id">
 							</div>
-							<div class="clo-md-4">
-
-							</div>
+						</div>
+						<br>
+						<div class="clo-md-4" style="width:30%; margin-left: 25px;">
+							<button type="button" class="btn btn-success">确定</button>
 						</div>
 					</div>
 				</div>
