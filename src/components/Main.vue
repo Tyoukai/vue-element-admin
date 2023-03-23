@@ -1,6 +1,6 @@
 <template>
   <div class="clo-md-10 col-md-offset-2 main">
-    <KafkaConfig></KafkaConfig>
+    <router-view></router-view>
   </div>
 </template>
 
