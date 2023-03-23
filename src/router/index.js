@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router'
+import HomePage from '../pages/HomePage'
 import KafkaConfig from '../pages/KafkaConfig'
 import RobotConfig from '../pages/RobotConfig'
 import WatchdogConfig from '../pages/WatchdogConfig'
-import HomePage from '../pages/HomePage'
 
 export default new VueRouter({
     routes: [

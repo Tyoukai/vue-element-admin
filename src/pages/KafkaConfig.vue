@@ -34,9 +34,9 @@
 </template>
 
 <script>
-export default {
-    name: 'KafkaConfig'
-}
+  export default {
+      name: 'KafkaConfig'
+  }
 </script>
 
 <style>

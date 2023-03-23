@@ -3,9 +3,9 @@
 </template>
 
 <script>
-export default {
-    name:'RobotConfig'
-}
+  export default {
+      name:'RobotConfig'
+  }
 </script>
 
 <style scoped>

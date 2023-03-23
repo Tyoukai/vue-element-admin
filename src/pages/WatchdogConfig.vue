@@ -3,9 +3,9 @@
 </template>
 
 <script>
-export default {
-    name: 'WatchdogConfig'
-}
+  export default {
+      name: 'WatchdogConfig'
+  }
 </script>
 
 <style>
