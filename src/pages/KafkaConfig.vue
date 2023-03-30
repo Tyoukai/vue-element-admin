@@ -6,15 +6,15 @@
             <div class="dropdown">
                 <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
                 data-toggle="dropdown">
-                    审批节点类型
+                    {{messageType}}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="#">结束节点</a>
+                    <li role="presentation" @click="changeMessageType('结束消息')">
+                        <a role="menuitem" tabindex="-1" href="#">结束消息</a>
                     </li>
-                    <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="#">审批节点</a>
+                    <li role="presentation" @click="changeMessageType('驳回消息')">
+                        <a role="menuitem" tabindex="-1" href="#">驳回消息</a>
                     </li>
                 </ul>
             </div>
@@ -23,20 +23,35 @@
         <div class="clo-md-4" style="width:30%; margin-left: 25px;">
             <div class="input-group">
                 <span class="input-group-addon">流程id：</span>
-                <input type="text" class="form-control" placeholder="流程id">
+                <input type="text" v-model="flowId" class="form-control" placeholder="流程id">
             </div>
         </div>
         <br>
         <div class="clo-md-4" style="width:30%; margin-left: 25px;">
-            <button type="button" class="btn btn-success">确定</button>
+            <button type="button" class="btn btn-success" @click="sendKafkaMessage()">确定</button>
         </div>
     </div>
 </template>
 
 <script>
-  export default {
-      name: 'KafkaConfig'
-  }
+export default {
+    name: 'KafkaConfig',
+    data() {
+        return {
+            messageType: '消息重试类型',
+            flowId: ''
+        }
+    },
+    methods: {
+        changeMessageType(type) {
+            this.messageType = type
+        },
+        sendKafkaMessage() {
+            // todo:发送ajax消息到后端
+            alert(this.messageType + ',' + this.flowId)
+        }
+    }
+}
 </script>
 
 <style>

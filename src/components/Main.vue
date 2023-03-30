@@ -5,13 +5,9 @@
 </template>
 
 <script>
-  import KafkaConfig from '@/pages/KafkaConfig.vue';
-  export default {
-      name: 'Main',
-      components: {
-        KafkaConfig
-      }
-  }
+export default {
+    name: 'Main',
+}
 </script>
 
 <style>
@@ -19,7 +15,7 @@
     .main {
       padding-right: 0px;
       padding-left: 0px;
-      height: 559px;
+      height: 540px;
     }
   }
 </style>

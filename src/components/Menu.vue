@@ -1,10 +1,10 @@
 <template>
   <div class="clo-md-2 sidebar">
     <ul class="nav nav-sidebar">
-      <li :class="activeData.home"><router-link to="/home">首页</router-link></li>
-      <li :class="activeData.kafka"><router-link to="/kafkaConfig">kafka配置</router-link></li>
-      <li :class="activeData.robot"><router-link to="/robotConfig">外挂机器人配置</router-link></li>
-      <li :class="activeData.watchdog"><router-link to="/watchdogConfig">看门狗配置</router-link></li>
+      <li :class="activeData.home" @click="changeCss('home')"><router-link to="/home">首页</router-link></li>
+      <li :class="activeData.kafka" v-on:click="changeCss('kafka')"><router-link to="/kafkaConfig" >kafka配置</router-link></li>
+      <li :class="activeData.robot" v-on:click="changeCss('robot')"><router-link to="/robotConfig">外挂机器人配置</router-link></li>
+      <li :class="activeData.watchdog" v-on:click="changeCss('watchdog')"><router-link to="/watchdogConfig" >看门狗配置</router-link></li>
     </ul>
   </div>
 </template>
@@ -25,25 +25,25 @@ export default {
   methods: {
     changeCss(item){
       if (item === 'home') {
-        this.data.activeData.home = 'active'
-        this.data.activeData.kafka = ''
-        this.data.activeData.robot = ''
-        this.data.activeData.watchdog = ''
+        this.activeData.home = 'active'
+        this.activeData.kafka = ''
+        this.activeData.robot = ''
+        this.activeData.watchdog = ''
       } else if (item === 'kafka') {
-        this.data.activeData.home = ''
-        this.data.activeData.kafka = 'active'
-        this.data.activeData.robot = ''
-        this.data.activeData.watchdog = ''
+        this.activeData.home = ''
+        this.activeData.kafka = 'active'
+        this.activeData.robot = ''
+        this.activeData.watchdog = ''
       } else if (item === 'robot') {
-        this.data.activeData.home = ''
-        this.data.activeData.kafka = ''
-        this.data.activeData.robot = 'active'
-        this.data.activeData.watchdog = ''
+        this.activeData.home = ''
+        this.activeData.kafka = ''
+        this.activeData.robot = 'active'
+        this.activeData.watchdog = ''
       } else {
-        this.data.activeData.home = ''
-        this.data.activeData.kafka = ''
-        this.data.activeData.robot = ''
-        this.data.activeData.watchdog = 'active'
+        this.activeData.home = ''
+        this.activeData.kafka = ''
+        this.activeData.robot = ''
+        this.activeData.watchdog = 'active'
       }
     }
   }
