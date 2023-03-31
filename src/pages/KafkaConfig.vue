@@ -34,24 +34,41 @@
 </template>
 
 <script>
-export default {
-    name: 'KafkaConfig',
-    data() {
-        return {
-            messageType: '消息重试类型',
-            flowId: ''
-        }
-    },
-    methods: {
-        changeMessageType(type) {
-            this.messageType = type
+    import axios from 'axios'
+    export default {
+        name: 'KafkaConfig',
+        data() {
+            return {
+                messageType: '消息重试类型',
+                flowId: ''
+            }
         },
-        sendKafkaMessage() {
-            // todo:发送ajax消息到后端
-            alert(this.messageType + ',' + this.flowId)
+        methods: {
+            changeMessageType(type) {
+                this.messageType = type
+            },
+            sendKafkaMessage() {
+                if (this.messageType === '消息重试类型') {
+                    alert('请选择消息类型！')
+                    return
+                }
+                if (this.flowId === '') {
+                    alert('请填写对应的流程id！')
+                    return
+                }
+                let urlProxy = 'http://localhost:8080/test/api';
+                let url = 'http://172.16.125.224:8100/test/api'
+                axios.get(urlProxy).then(
+                    response => {
+                        console.log(response.data)
+                    },
+                    error => {
+                        console.log(error.message)
+                    }
+                )
+            }
         }
     }
-}
 </script>
 
 <style>
