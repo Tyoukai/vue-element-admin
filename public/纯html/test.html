@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bootstrap 实例 - 默认的导航栏</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .positionTest {
+            position: static;
+            left: 150px;
+            top: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">菜鸟教程</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">iOS</a></li>
+				<li><a href="#">SVN</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Java
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">jmeter</a></li>
+						<li><a href="#">EJB</a></li>
+						<li><a href="#">Jasper Report</a></li>
+						<li class="divider"></li>
+						<li><a href="#">分离的链接</a></li>
+						<li class="divider"></li>
+						<li><a href="#">另一个分离的链接</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div style="box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);">
+    <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item" href="#">New features</a>
+          <a class="blog-nav-item" href="#">Press</a>
+          <a class="blog-nav-item" href="#">New hires</a>
+          <a class="blog-nav-item" href="#">About</a>
+        </nav>
+    </div>
+ </div>
+
+ <br>
+<div style="width: 70px; height: 20px; box-shadow:inset  0px 2px 3px #fff; color: #cd3535;">
+    阴影测试
+</div>
+
+<div class="positionTest">
+    position属性测试
+</div>
+
+<div style="height: 500px;">
+    填充div
+</div>
+<div style="height: 500px;">
+    填充div
+</div>
+
+
+</body>
+</html>

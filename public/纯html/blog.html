@@ -8,11 +8,27 @@
 
         <title>博客首页</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            .blog-nav .active {
+                color: #f22727;
+            }
+            .blog-nav .active::after {
+                content: "测试文字";
+                color: #4527f2;
+            }
+        </style>
     </head>
 
     <body>
         <!-- header -->
         <div>
+            <div class="container">
+                <nav class="blog-nav">
+                    <a class="active" href="#">主页</a>
+                    <a href="#">其他</a>
+                </nav>
+            </div>
 
         </div>
 
