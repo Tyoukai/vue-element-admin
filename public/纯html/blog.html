@@ -10,23 +10,34 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
         <style>
-            .blog-nav .active {
-                color: #f22727;
+            .blog-masthead {
+                background-color: #428bca;
+                box-shadow: inset 0px -2px 5px rgba(0, 0, 0, .1);
             }
-            .blog-nav .active::after {
-                content: "测试文字";
+            .blog-nav .active {
+                color: #fff;
+            }
+            /* .blog-nav .active::after {
+                position: absolute;
                 color: #4527f2;
+            } */
+            .blog-nav-item {
+                position: relative;
+                display: inline-block;
+                padding: 10px;
+                font-weight: 500;
+                color: #cdddeb;
             }
         </style>
     </head>
 
     <body>
         <!-- header -->
-        <div>
+        <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <a class="active" href="#">主页</a>
-                    <a href="#">其他</a>
+                    <a class="blog-nav-item active" href="#">主页</a>
+                    <a class="blog-nav-item" href="#">其他</a>
                 </nav>
             </div>
 

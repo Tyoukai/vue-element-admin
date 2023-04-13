@@ -8,7 +8,7 @@
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .positionTest {
-            position: static;
+            position: absolute;
             left: 150px;
             top: 300px;
         }
@@ -64,7 +64,27 @@
 </div>
 
 <div class="positionTest">
-    position属性测试
+    1、position属性测试
+</div>
+<div>
+	2、块元素、行内块元素、行内元素测试
+	<span style="width: 300px;">ssss</span>
+	<span>dddd</span>
+
+	<div>
+		<div style="display: none;">块1</div>
+		<div>块2</div>
+	</div>
+
+	<div>
+		<span style="display: inline-block;;width: 300px;">ssss</span>
+	    <span style="display: inline-block;">dddd</span>
+	</div>
+
+</div>
+
+<div>
+	<span style="font-weight: 500;">字体粗细测试</span>
 </div>
 
 <div style="height: 500px;">
