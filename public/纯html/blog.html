@@ -14,19 +14,33 @@
                 background-color: #428bca;
                 box-shadow: inset 0px -2px 5px rgba(0, 0, 0, .1);
             }
-            .blog-nav .active {
-                color: #fff;
-            }
-            /* .blog-nav .active::after {
-                position: absolute;
-                color: #4527f2;
-            } */
             .blog-nav-item {
                 position: relative;
                 display: inline-block;
                 padding: 10px;
                 font-weight: 500;
                 color: #cdddeb;
+            }
+            .blog-nav-item:hover,
+            .blog-nav-item:focus {
+                color:#fff;
+                text-decoration: none
+            }
+
+            .blog-nav .active {
+                color: #fff;
+            }
+            .blog-nav .active:after {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 0;
+                margin-left: -5px;
+                vertical-align: middle;
+                content: " ";
+                border-right: 5px solid transparent;
+                
             }
         </style>
     </head>
@@ -45,14 +59,7 @@
 
         <!-- main -->
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2" style="background-color: bisque;">
-                    这是第一个栅栏
-                </div>
-                <div class="col-md-6" style="background-color: aqua;">
-                    这是第二个栅栏
-                </div>
-            </div>
+            
         </div>
 
         <!-- footer -->
