@@ -30,7 +30,7 @@
             .blog-nav .active {
                 color: #fff;
             }
-            .blog-nav .active:after {
+            .blog-nav .active::after {
                 position: absolute;
                 bottom: 0;
                 left: 50%;
@@ -40,7 +40,13 @@
                 vertical-align: middle;
                 content: " ";
                 border-right: 5px solid transparent;
+                border-bottom: 5px solid;
+                border-left: 5px solid transparent;
                 
+            }
+            .blog-header {
+                padding-top: 20px;
+                padding-bottom: 20px;
             }
         </style>
     </head>
@@ -58,8 +64,16 @@
         </div>
 
         <!-- main -->
-        <div class="container-fluid">
-            
+        <div class="container">
+            <div class="blog-header">
+                <h1>博客的标题</h1>
+                <p>博客副标题</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6" style="background-color: #428bca;">第一行</div>
+                <div class="col-md-6" style="background-color: aquamarine;">第二行</div>
+            </div>
         </div>
 
         <!-- footer -->
