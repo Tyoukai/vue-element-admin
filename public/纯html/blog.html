@@ -10,6 +10,14 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
         <style>
+            body {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                color: #555;
+            }
+
+
+
+
             .blog-masthead {
                 background-color: #428bca;
                 box-shadow: inset 0px -2px 5px rgba(0, 0, 0, .1);
@@ -58,6 +66,25 @@
                 font-size: 20px;
                 color:#999;
             }
+
+            .blog-main {
+                font-size: 20px;
+                line-height: 1.5;
+            }
+
+            .blog-post {
+                margin-bottom: 60px;
+            }
+
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+
+            .blog-post-meta {
+                margin-bottom: 20px;
+                color: #999;
+            }
         </style>
     </head>
 
@@ -81,8 +108,21 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6" style="background-color: #428bca;">第一行</div>
-                <div class="col-md-6" style="background-color: aquamarine;">第二行</div>
+                <div class="col-md-8 blog-main">
+                    <div class="blog-post">
+                        <h1 class="blog-post-title">CSS保姆级入门</h1>
+                        <p class="blog-post-meta">基础样式学习</p>
+
+                        <p>文章正文1</p>
+                    </div>
+
+                    <div class="blog-post">
+                        <h1 class="blog-post-title">文章标题2</h1>
+                        <p class="blog-post-meta">文章副标题2</p>
+
+                        <p>文章正文2</p>
+                    </div>
+                </div>
             </div>
         </div>
 
