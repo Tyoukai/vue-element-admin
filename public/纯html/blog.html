@@ -91,6 +91,28 @@
                 padding: 15px;
                 margin: 0 -15px 15px;
             }
+
+            .sidebar-module-inset {
+                padding: 15px;
+                background-color: #f5f5f5;
+                border-radius: 4px;
+            }
+
+            .sidebar-module-inset p:last-child {
+                margin-bottom: 0;
+            }
+
+            .blog-footer {
+                padding: 40px 0;
+                color: #999;
+                text-align: center;
+                background-color: #f9f9f9;
+                border-top: 1px solid #e5e5e5;
+            }
+
+            .blog-footer p:last-child {
+                margin-bottom: 0;
+            }
         </style>
     </head>
 
@@ -155,26 +177,44 @@
                     </nav>
                 </div>
 
-                <div class="col-md-3 col-md-offset-1">
-                    <div class="sidebar-module">
-                        <h1>关于</h1>
+                <div class="col-md-3 col-md-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+                        <h4>关于</h1>
                         <p>Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
                     </div>
 
-                    <div>
-
+                    <div class="sidebar-module">
+                        <h4>其他目录</h1>
+                        <ol class="list-unstyled">
+                            <li><a href="#">一月</a></li>
+                            <li><a href="#">二月</a></li>
+                            <li><a href="#">三月</a></li>
+                            <li><a href="#">四月</a></li>
+                            <li><a href="#">五月</a></li>
+                            <li><a href="#">六月</a></li>
+                            <li><a href="#">七月</a></li>
+                            <li><a href="#">八月</a></li>
+                        </ol>
                     </div>
 
                     <div>
-
+                        <h4>联系作者</h4>
+                        <ol class="list-unstyled">
+                            <li><a href="#">微博</a></li>
+                            <li><a href="#">github</a></li>
+                            <li><a href="#">twitter</a></li>
+                        </ol>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- footer -->
-        <div>
-
+        <div class="blog-footer">
+            <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            <p>
+                <a href="#">返回顶部</a>
+            </p>
         </div>
     </body>
 </html>
