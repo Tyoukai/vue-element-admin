@@ -5,6 +5,7 @@
       <li :class="activeData.kafka" v-on:click="changeCss('kafka')"><router-link to="/kafkaConfig" >kafka配置</router-link></li>
       <li :class="activeData.robot" v-on:click="changeCss('robot')"><router-link to="/robotConfig">外挂机器人配置</router-link></li>
       <li :class="activeData.watchdog" v-on:click="changeCss('watchdog')"><router-link to="/watchdogConfig" >看门狗配置</router-link></li>
+      <li :class="activeData.operation" v-on:click="changeCss('operation')"><router-link to="/operationConfig" >智能运维</router-link></li>
     </ul>
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
         home: 'active',
         kafka: '',
         robot: '',
-        watchdog: ''
+        watchdog: '',
+        operation: ''
       }
     }
   },
@@ -29,21 +31,31 @@ export default {
         this.activeData.kafka = ''
         this.activeData.robot = ''
         this.activeData.watchdog = ''
+        this.activeData.operation = ''
       } else if (item === 'kafka') {
         this.activeData.home = ''
         this.activeData.kafka = 'active'
         this.activeData.robot = ''
         this.activeData.watchdog = ''
+        this.activeData.operation = ''
       } else if (item === 'robot') {
         this.activeData.home = ''
         this.activeData.kafka = ''
         this.activeData.robot = 'active'
         this.activeData.watchdog = ''
-      } else {
+        this.activeData.operation = ''
+      } else if (item === 'watchdog') {
         this.activeData.home = ''
         this.activeData.kafka = ''
         this.activeData.robot = ''
         this.activeData.watchdog = 'active'
+        this.activeData.operation = ''
+      } else {
+        this.activeData.home = ''
+        this.activeData.kafka = ''
+        this.activeData.robot = ''
+        this.activeData.watchdog = ''
+        this.activeData.operation = 'active'
       }
     }
   }

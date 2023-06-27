@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage'
 import KafkaConfig from '../pages/KafkaConfig'
 import RobotConfig from '../pages/RobotConfig'
 import WatchdogConfig from '../pages/WatchdogConfig'
+import OperationConfig from '../pages/OperationConfig'
 
 export default new VueRouter({
     routes: [
@@ -21,6 +22,10 @@ export default new VueRouter({
         {
             path:'/watchdogConfig',
             component: WatchdogConfig
+        },
+        {
+            path:'/operationConfig',
+            component: OperationConfig
         }
     ]
 })
