@@ -10,6 +10,7 @@
                         <th>数据源id</th>
                         <th>指标id</th>
                         <th>下次执行时间</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
 
@@ -18,6 +19,7 @@
                         <td>{{ queueNodeInfo.dataSourceId }}</td>
                         <td>{{ queueNodeInfo.metricId }}</td>
                         <td>{{ queueNodeInfo.nextExecuteTime }}</td>
+                        <td><button type="button" class="btn btn-danger" >从队列中删除</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -33,33 +35,35 @@ export default {
         return {
             timer: "",
             delayQueueInfos: [
-                {
-                    ip:'127.0.0.1',
-                    queueNodeInfos: [
-                        {
-                            dataSourceId: 2,
-                            metricId: 64,
-                            nextExecuteTime: '2023 09:23:34'
-                        }
-                    ]
-                }
+                // {
+                //     ip:'127.0.0.1',
+                //     queueNodeInfos: [
+                //         {
+                //             dataSourceId: 2,
+                //             metricId: 64,
+                //             nextExecuteTime: '2023 09:23:34'
+                //         }
+                //     ]
+                // }
             ]
         }
     },
     methods: {
         queryDelayQueueInfo() {
             this.delayQueueInfos = []
-            let ip = '127.0.0.1'
-            let url = 'http://' + ip + ':8080/test/api'
+            let ip = 'localhost'
+            let url = 'http://' + ip + ':8080/hermes/operation/delayQueue'
 
             axios.get(url).then(
                 response => {
+                    console.log(response.data)
+                    debugger
                     let delayQueueInfo = {ip: ip, queueNodeInfos: []}
-                    for (let m = 0; m < response.data.queueNodes.length; m++) {
+                    for (let m = 0; m < response.data.queueNodeInfos.length; m++) {
                         let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
-                        queueNodeInfo.dataSourceId = response.data.queueNodes[m].dataSourceId
-                        queueNodeInfo.metricId = response.data.queueNodes[m].metricId
-                        queueNodeInfo.nextExecuteTime = response.data.queueNodes[m].nextExecuteTime
+                        queueNodeInfo.dataSourceId = response.data.queueNodeInfos[m].dataSourceId
+                        queueNodeInfo.metricId = response.data.queueNodeInfos[m].metricId
+                        queueNodeInfo.nextExecuteTime = response.data.queueNodeInfos[m].nextExecuteTime
                         delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
                     }
                     this.delayQueueInfos.push(delayQueueInfo)
@@ -68,29 +72,28 @@ export default {
                 }
             )
 
-            ip = '127.0.0.2'
-            url = 'http://' + ip + ':8080/test/api'
-            axios.get(url).then(
-                response => {
-                    let delayQueueInfo = {ip: ip, queueNodeInfos: []}
-                    for (let m = 0; m < response.data.queueNodes.length; m++) {
-                        let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
-                        queueNodeInfo.dataSourceId = response.data.queueNodes[m].dataSourceId
-                        queueNodeInfo.metricId = response.data.queueNodes[m].metricId
-                        queueNodeInfo.nextExecuteTime = response.data.queueNodes[m].nextExecuteTime
-                        delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
-                    }
-                    this.delayQueueInfos.push(delayQueueInfo)
-                }, error => {
-                    console.log('error query url:' + url)
-                }
-            )
-
-
+            // ip = '127.0.0.2'
+            // url = 'http://' + ip + ':8080/test/api'
+            // axios.get(url).then(
+            //     response => {
+            //         console.log('delayqueue response data:' + response.data)
+            //         let delayQueueInfo = {ip: ip, queueNodeInfos: []}
+            //         for (let m = 0; m < response.data.queueNodeInfos.length; m++) {
+            //             let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
+            //             queueNodeInfo.dataSourceId = response.data.queueNodeInfos[m].dataSourceId
+            //             queueNodeInfo.metricId = response.data.queueNodeInfos[m].metricId
+            //             queueNodeInfo.nextExecuteTime = response.data.queueNodeInfos[m].nextExecuteTime
+            //             delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
+            //         }
+            //         this.delayQueueInfos.push(delayQueueInfo)
+            //     }, error => {
+            //         console.log('error query url:' + url)
+            //     }
+            // )
         }
     },
     mounted() {
-        // this.timer = setInterval(this.queryDelayQueueInfo())
+        this.timer = setInterval(this.queryDelayQueueInfo(), 10000)
     },
     beforeDestroy() {
         clearInterval(this.timer)

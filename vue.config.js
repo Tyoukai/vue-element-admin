@@ -4,6 +4,6 @@ module.exports = defineConfig({
   lintOnSave:false, // 关闭语法校验检测
   // 开启代理服务器
   devServer: {
-    proxy: 'http://172.16.125.224:8100'
+    proxy: 'http://10.246.4.52:8100'
   }
 })
