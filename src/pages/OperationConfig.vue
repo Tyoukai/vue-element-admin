@@ -34,18 +34,7 @@ export default {
     data() {
         return {
             timer: "",
-            delayQueueInfos: [
-                // {
-                //     ip:'127.0.0.1',
-                //     queueNodeInfos: [
-                //         {
-                //             dataSourceId: 2,
-                //             metricId: 64,
-                //             nextExecuteTime: '2023 09:23:34'
-                //         }
-                //     ]
-                // }
-            ]
+            delayQueueInfos: []
         }
     },
     methods: {
@@ -54,11 +43,11 @@ export default {
             let ip = 'localhost'
             let url = 'http://' + ip + ':8080/hermes/operation/delayQueue'
 
-            axios.get(url).then(
+            axios.get('/hermes/operation/delayQueue').then(
                 response => {
                     console.log(response.data)
                     debugger
-                    let delayQueueInfo = {ip: ip, queueNodeInfos: []}
+                    let delayQueueInfo = {ip: response.data.ip, queueNodeInfos: []}
                     for (let m = 0; m < response.data.queueNodeInfos.length; m++) {
                         let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
                         queueNodeInfo.dataSourceId = response.data.queueNodeInfos[m].dataSourceId
@@ -71,25 +60,6 @@ export default {
                     console.log('error query url:' + url)
                 }
             )
-
-            // ip = '127.0.0.2'
-            // url = 'http://' + ip + ':8080/test/api'
-            // axios.get(url).then(
-            //     response => {
-            //         console.log('delayqueue response data:' + response.data)
-            //         let delayQueueInfo = {ip: ip, queueNodeInfos: []}
-            //         for (let m = 0; m < response.data.queueNodeInfos.length; m++) {
-            //             let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
-            //             queueNodeInfo.dataSourceId = response.data.queueNodeInfos[m].dataSourceId
-            //             queueNodeInfo.metricId = response.data.queueNodeInfos[m].metricId
-            //             queueNodeInfo.nextExecuteTime = response.data.queueNodeInfos[m].nextExecuteTime
-            //             delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
-            //         }
-            //         this.delayQueueInfos.push(delayQueueInfo)
-            //     }, error => {
-            //         console.log('error query url:' + url)
-            //     }
-            // )
         }
     },
     mounted() {
