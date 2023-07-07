@@ -19,7 +19,7 @@
                         <td>{{ queueNodeInfo.dataSourceId }}</td>
                         <td>{{ queueNodeInfo.metricId }}</td>
                         <td>{{ queueNodeInfo.nextExecuteTime }}</td>
-                        <td><button type="button" class="btn btn-danger" >从队列中删除</button></td>
+                        <td><button type="button" class="btn btn-danger" @click="deleteDelayQueueInfo(queueNodeInfo.dataSourceId, queueNodeInfo.metricId)">从队列中删除</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -46,7 +46,6 @@ export default {
             axios.get('/hermes/operation/delayQueue').then(
                 response => {
                     console.log(response.data)
-                    debugger
                     let delayQueueInfo = {ip: response.data.ip, queueNodeInfos: []}
                     for (let m = 0; m < response.data.queueNodeInfos.length; m++) {
                         let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
@@ -58,6 +57,17 @@ export default {
                     this.delayQueueInfos.push(delayQueueInfo)
                 }, error => {
                     console.log('error query url:' + url)
+                }
+            )
+        },
+        deleteDelayQueueInfo(dataSourceId, metricId) {
+            console.log(dataSourceId + ',' + metricId)
+            axios.delete('/hermes/operation/delayQueue').then(
+                response => {
+                    console.log(response.data)
+                    this.queryDelayQueueInfo()
+                }, error => {
+                    console.log('error delete /hermes/operation/delayQueue', error)
                 }
             )
         }
