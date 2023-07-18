@@ -7,8 +7,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>数据源id</th>
-                        <th>指标id</th>
+                        <th>key</th>
                         <th>下次执行时间</th>
                         <th>操作</th>
                     </tr>
@@ -16,10 +15,9 @@
 
                 <tbody>
                     <tr v-for="(queueNodeInfo, index) in delayQueueInfo.queueNodeInfos" :key="index">
-                        <td>{{ queueNodeInfo.dataSourceId }}</td>
-                        <td>{{ queueNodeInfo.metricId }}</td>
+                        <td>{{ queueNodeInfo.key }}</td>
                         <td>{{ queueNodeInfo.nextExecuteTime }}</td>
-                        <td><button type="button" class="btn btn-danger" @click="deleteDelayQueueInfo(queueNodeInfo.dataSourceId, queueNodeInfo.metricId)">从队列中删除</button></td>
+                        <td><button type="button" class="btn btn-danger" @click="deleteDelayQueueInfo(queueNodeInfo.key, queueNodeInfo.queueName, delayQueueInfo.ip)">从队列中删除</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -46,22 +44,46 @@ export default {
             axios.get('/hermes/operation/delayQueue').then(
                 response => {
                     console.log(response.data)
-                    let delayQueueInfo = {ip: response.data.ip, queueNodeInfos: []}
-                    for (let m = 0; m < response.data.queueNodeInfos.length; m++) {
-                        let queueNodeInfo = {dataSourceId: 0, metricId: 0, nextExecuteTime : ''}
-                        queueNodeInfo.dataSourceId = response.data.queueNodeInfos[m].dataSourceId
-                        queueNodeInfo.metricId = response.data.queueNodeInfos[m].metricId
-                        queueNodeInfo.nextExecuteTime = response.data.queueNodeInfos[m].nextExecuteTime
+                    let data = response.data.data
+                    let delayQueueInfo = {ip: data.ip, queueNodeInfos: []}
+                    let metricQueue = data.queueNodeInfos.metricQueue
+                    for (let m = 0; m < metricQueue.length; m++) {
+                        let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
+                        queueNodeInfo.queueName = 'metricQueue'
+                        queueNodeInfo.key = metricQueue[m].key
+                        queueNodeInfo.nextExecuteTime = metricQueue[m].nextExecuteTime
                         delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
                     }
+                    
+
+                    let phaserForQueryLatestMetric = data.queueNodeInfos.phaserForQueryLatestMetric
+                    for (let n = 0; n < phaserForQueryLatestMetric.length; n++) {
+                        let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
+                        queueNodeInfo.queueName = 'phaserForQueryLatestMetric'
+                        queueNodeInfo.key = phaserForQueryLatestMetric[n].key
+                        queueNodeInfo.nextExecuteTime = phaserForQueryLatestMetric[n].nextExecuteTime
+                        delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
+
+                    }
+
+                    let phaserForCheck = data.queueNodeInfos.phaserForCheck
+                    for (let n = 0; n < phaserForCheck.length; n++) {
+                        let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
+                        queueNodeInfo.queueName = 'phaserForCheck'
+                        queueNodeInfo.key = phaserForCheck[n].key
+                        queueNodeInfo.nextExecuteTime = phaserForCheck[n].nextExecuteTime
+                        delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
+
+                    }
+
                     this.delayQueueInfos.push(delayQueueInfo)
                 }, error => {
                     console.log('error query url:' + url)
                 }
             )
         },
-        deleteDelayQueueInfo(dataSourceId, metricId) {
-            console.log(dataSourceId + ',' + metricId)
+        deleteDelayQueueInfo(key, queueName, ip) {
+            console.log(key + ',' + queueName + ',' + ip)
             axios.delete('/hermes/operation/delayQueue').then(
                 response => {
                     console.log(response.data)
