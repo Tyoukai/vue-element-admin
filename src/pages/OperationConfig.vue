@@ -2,6 +2,7 @@
     <div>
         <h1>三方数据源延迟队列情况</h1>
         <br>
+        <button type="button" class="btn btn-success" @click="queryDelayQueueInfo()">刷新延迟队列情况</button>
         <div v-for="(delayQueueInfo, index) in delayQueueInfos" :key="index">
             <h3>{{ delayQueueInfo.ip }}</h3>
             <table class="table table-bordered">
@@ -36,47 +37,57 @@ export default {
         }
     },
     methods: {
+        fillQueue(data) {
+            let delayQueueInfo = {ip: data.ip, queueNodeInfos: []}
+            let metricQueue = data.queueNodeInfos.metricQueue
+            for (let n = 0; n < metricQueue.length; n++) {
+                let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
+                queueNodeInfo.queueName = 'metricQueue'
+                queueNodeInfo.key = metricQueue[n].key
+                queueNodeInfo.nextExecuteTime = metricQueue[n].nextExecuteTime
+                delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
+            }
+            
+            let phaserForQueryLatestMetric = data.queueNodeInfos.phaserForQueryLatestMetric
+            for (let n = 0; n < phaserForQueryLatestMetric.length; n++) {
+                let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
+                queueNodeInfo.queueName = 'phaserForQueryLatestMetric'
+                queueNodeInfo.key = phaserForQueryLatestMetric[n].key
+                queueNodeInfo.nextExecuteTime = phaserForQueryLatestMetric[n].nextExecuteTime
+                delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
+
+            }
+
+            let phaserForCheck = data.queueNodeInfos.phaserForCheck
+            for (let n = 0; n < phaserForCheck.length; n++) {
+                let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
+                queueNodeInfo.queueName = 'phaserForCheck'
+                queueNodeInfo.key = phaserForCheck[n].key
+                queueNodeInfo.nextExecuteTime = phaserForCheck[n].nextExecuteTime
+                delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
+
+            }
+            this.delayQueueInfos.push(delayQueueInfo)
+
+        },
         queryDelayQueueInfo() {
             this.delayQueueInfos = []
-            let ip = 'localhost'
-            let url = 'http://' + ip + ':8080/hermes/operation/delayQueue'
+            let url = 'http://172.16.66.97:8100/hermes/operation/delayQueue'
 
-            axios.get('/hermes/operation/delayQueue').then(
+            axios.get(url).then(   //'/hermes/operation/delayQueue'
                 response => {
                     console.log(response.data)
-                    let data = response.data.data
-                    let delayQueueInfo = {ip: data.ip, queueNodeInfos: []}
-                    let metricQueue = data.queueNodeInfos.metricQueue
-                    for (let m = 0; m < metricQueue.length; m++) {
-                        let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
-                        queueNodeInfo.queueName = 'metricQueue'
-                        queueNodeInfo.key = metricQueue[m].key
-                        queueNodeInfo.nextExecuteTime = metricQueue[m].nextExecuteTime
-                        delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
-                    }
-                    
+                    this.fillQueue(response.data.data)
+                }, error => {
+                    console.log('error query url:' + url)
+                }
+            )
 
-                    let phaserForQueryLatestMetric = data.queueNodeInfos.phaserForQueryLatestMetric
-                    for (let n = 0; n < phaserForQueryLatestMetric.length; n++) {
-                        let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
-                        queueNodeInfo.queueName = 'phaserForQueryLatestMetric'
-                        queueNodeInfo.key = phaserForQueryLatestMetric[n].key
-                        queueNodeInfo.nextExecuteTime = phaserForQueryLatestMetric[n].nextExecuteTime
-                        delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
-
-                    }
-
-                    let phaserForCheck = data.queueNodeInfos.phaserForCheck
-                    for (let n = 0; n < phaserForCheck.length; n++) {
-                        let queueNodeInfo = {key: '', nextExecuteTime : '', queueName: ''}
-                        queueNodeInfo.queueName = 'phaserForCheck'
-                        queueNodeInfo.key = phaserForCheck[n].key
-                        queueNodeInfo.nextExecuteTime = phaserForCheck[n].nextExecuteTime
-                        delayQueueInfo.queueNodeInfos.push(queueNodeInfo)
-
-                    }
-
-                    this.delayQueueInfos.push(delayQueueInfo)
+            url = 'http://172.16.64.3:8100/hermes/operation/delayQueue'
+            axios.get(url).then(
+                response => {
+                    console.log(response.data)
+                    this.fillQueue(response.data.data)
                 }, error => {
                     console.log('error query url:' + url)
                 }
@@ -84,7 +95,13 @@ export default {
         },
         deleteDelayQueueInfo(key, queueName, ip) {
             console.log(key + ',' + queueName + ',' + ip)
-            axios.delete('/hermes/operation/delayQueue').then(
+            let params = {
+                queueName: queueName,
+                key: key
+            }
+
+            let url = 'http://' + ip + ':8100/hermes/operation/delayQueue'
+            axios.delete(url, {params: params}).then(   //'/hermes/operation/delayQueue'
                 response => {
                     console.log(response.data)
                     this.queryDelayQueueInfo()
@@ -95,7 +112,8 @@ export default {
         }
     },
     mounted() {
-        this.timer = setInterval(this.queryDelayQueueInfo(), 10000)
+        this.queryDelayQueueInfo()
+        this.timer = setInterval(this.queryDelayQueueInfo, 600000)
     },
     beforeDestroy() {
         clearInterval(this.timer)

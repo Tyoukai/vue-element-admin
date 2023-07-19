@@ -5,6 +5,6 @@ module.exports = defineConfig({
   
   devServer: {
     // 开启代理服务器
-    // proxy: 'http://10.246.4.52:8100'
+    // proxy: 'http://172.16.125.224:8100'
   }
 })

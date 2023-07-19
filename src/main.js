@@ -3,7 +3,9 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import router from './router'
 
-require('./mock.js')
+
+// 本地mock的时候解开该注释
+// require('./mock.js')
 
 
 Vue.config.productionTip = false
